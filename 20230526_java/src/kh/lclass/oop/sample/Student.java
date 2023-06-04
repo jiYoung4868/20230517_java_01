@@ -48,7 +48,8 @@ public final /* abstract */ class Student extends Person {
 	// 메소드 정의 // 이 기능은 이런이런 기능으로 되어 있어!
 	
 	//메소드 선언 // 이 기능이 있을거야, 있어야 해.
-	public void setGrade(int grade); {
+	
+	public void setGrade(int grade) {
 				this.grade = grade;
 	}
 //	public void setName(String name) {
