@@ -13,7 +13,7 @@ import java.net.UnknownHostException;
 import java.util.Scanner;
 
 public class TcpClient {
-	public void testTCPClient(String ip, int port) {
+	public void testTCPClient(String serverIp, int serverPort) {
 		Socket socket = null;
 		InputStream in = null;
 		OutputStream out = null;
@@ -25,24 +25,24 @@ public class TcpClient {
 		BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
 
 		try {
-			socket = new Socket(ip, port);
+			socket = new Socket(serverIp, serverPort);
 			System.out.println("서버에 접속 성공");
 
-			in = socket.getInputStream(); // 이걸로 클라이언트가 주는 내용 읽음
-			out = socket.getOutputStream();
+//			in = socket.getInputStream(); // 이걸로 클라이언트가 주는 내용 읽음
+//			out = socket.getOutputStream();
 			// 6. 보조 스트림을 통해 성능 개선
-			br = new BufferedReader(new InputStreamReader(in)); // 문자 형태로 만들어주고 속도 올려주기
-			pw = new PrintWriter(new OutputStreamWriter(out));
+			br = new BufferedReader(new InputStreamReader(socket.getInputStream())); // 문자 형태로 만들어주고 속도 올려주기
+			pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
 
 			while (true) {
 				String sendMsg = null;
 
-				System.out.println("메시지>>");
+				System.out.println("메시지>>"); //console에 입력한 문자 읽어들이기
 				sendMsg = stdIn.readLine();
-				System.out.println("#####" + sendMsg);
+				System.out.println("#####" + sendMsg); //server로 문자 전송
 
 				pw.println(sendMsg);
-				pw.flush();
+				pw.flush(); //server부터 메시지 읽기
 
 				String receivedMsg = br.readLine();
 				System.out.println("서버로부터 받은 메시지: " + receivedMsg);
