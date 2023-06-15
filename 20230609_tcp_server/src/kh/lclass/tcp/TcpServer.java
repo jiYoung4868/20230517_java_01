@@ -22,34 +22,35 @@ public class TcpServer {
 
 		try {
 			// 2. 서버용 소켓 객체 생성
-			ss = new ServerSocket(port);
+			ss = new ServerSocket(port); // 중요
 //			System.out.println("서버(나의) IP:" + ss.getInetAddress().toString());
 //			System.out.println("서버(나의) 포트:" + ss.getLocalPort());
-			//소켓은 그냥 getport가 없음
-			
+			// 소켓은 그냥 getport가 없음
+
 			while (true) {
 
 				System.out.println("클라이언트 접속 대기중 ...");
 				// 3. 클라이언트 쪽에서 접속 요청이 오길 기다림,
 				// 4. 접속 요청이 오면 요청 수락 후 해당 클라이언트에 대해 소켓 객체 생성
-				
-				sc = ss.accept();// [[얘는 들어오는 대로 만들어짐]] 여기서 계속 기다리는 중
-				
+
+				sc = ss.accept();// [[얘는 들어오는 대로 만들어짐]] 여기서 계속 기다리는 중 ,,중요
+
 //				System.out.println("클라이언트 접속됨: " + sc.getPort()); //자동 바뀜
 //				System.out.println("클라이언트 접속됨: " + sc.getInetAddress().toString());
 
 				// 5. 연결된 클라이언트와 입출력 스트림 생성
-				in = sc.getInputStream(); // 이걸로 클라이언트가 주는 내용 읽음
+				in = sc.getInputStream(); // 이걸로 클라이언트가 주는 내용 읽음 
 				out = sc.getOutputStream();
 				// 6. 보조 스트림을 통해 성능 개선
 				br = new BufferedReader(new InputStreamReader(in)); // 문자 형태로 만들어주고 속도 올려주기
-				wr = new BufferedWriter(new OutputStreamWriter(out));
+				wr = new BufferedWriter(new OutputStreamWriter(out)); //중요
 
 				String receivedMsg = null;
-				while ((receivedMsg = br.readLine()) != null) {
+				while ((receivedMsg = br.readLine()) != null) { //중요
 					System.out.println("받은메시지: " + receivedMsg);
 					wr.write("메시지 잘 받았음.\n");
-					wr.flush();
+					wr.flush(); // 중요
+
 				}
 			}
 

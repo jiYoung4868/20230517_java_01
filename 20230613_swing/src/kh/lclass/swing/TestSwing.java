@@ -61,15 +61,13 @@ class MyActionListener implements ActionListener{
 		System.out.println("이건 언제 호출되는가");
 		System.out.println(e);
 		Object source = e.getSource();
-		if(source instanceof JButton) {
-			System.out.println("button 눌렀음");
-			if(((JButton)source).getText().equals("저장")) {
-			((JButton)source).setText("Save"); //버튼 누르면 save로 바뀜
+		if(source instanceof JTextField) {
+			System.out.println("JTextField에서 enter 눌렀음");
+			if(((JTextField)source).getText().trim().length() == 0) { //Trim은 양쪽 끝에 있는 공백만 없애줌
+			((JTextField)source).setText("이름을 입력해주세요."); //버튼 누르면 save로 바뀜
 			}else {
-				((JButton)source).setText("저장");
+				((JTextField)source).setText(((JTextField)source).getText().trim());
 			}
-		}else if (source instanceof JTextField) {
-			System.out.println("text 필드에서 enter-key 눌렀음");
 		}
 	}
 }

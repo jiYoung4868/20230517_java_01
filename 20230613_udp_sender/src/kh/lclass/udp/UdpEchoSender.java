@@ -26,7 +26,7 @@ public class UdpEchoSender {
 
 		try {
 			// DatagramSocket 객체 생성
-			dSock = new DatagramSocket(myPort);
+			dSock = new DatagramSocket(myPort); //중요
 			// 매개인자 없으면 자동port 번호 할당, 지정하면 해당 포트번호로 소켓 생성
 
 			br = new BufferedReader(new InputStreamReader(System.in));
@@ -43,7 +43,7 @@ public class UdpEchoSender {
 				InetAddress destIp = null;
 				try {
 					// 연결한 클라이언트 IP주소를 가진 InetAddress 객체 생성
-					destIp = InetAddress.getByName(destName);
+					destIp = InetAddress.getByName(destName); 
 					// 전송할 메시지를 byte[]로 바꿈
 					byte[] byteMsg = sendMsg.getBytes();
 					// 전송할 메시지를 DatagramPacket 객체에 담음
@@ -59,7 +59,7 @@ public class UdpEchoSender {
 
 				// 메시지 수신
 				byte[] byteMsg = new byte[1000];
-				DatagramPacket receivedData = new DatagramPacket(byteMsg, byteMsg.length);
+				DatagramPacket receivedData = new DatagramPacket(byteMsg, byteMsg.length); //중요
 				dSock.receive(receivedData);
 
 				String receivedStr = new String(receivedData.getData());
