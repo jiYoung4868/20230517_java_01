@@ -1,4 +1,4 @@
- package kh.lclass.tcp;
+package kh.lclass.tcp;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -25,7 +25,7 @@ public class TcpClient {
 		BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
 
 		try {
-			socket = new Socket(serverIp, serverPort); //중요,, 클라이언트는 바로 소켓 생성
+			socket = new Socket(serverIp, serverPort); // 중요,, 클라이언트는 바로 소켓 생성
 			System.out.println("서버에 접속 성공");
 
 //			in = socket.getInputStream(); // 이걸로 클라이언트가 주는 내용 읽음
@@ -37,12 +37,12 @@ public class TcpClient {
 			while (true) {
 				String sendMsg = null;
 
-				System.out.println("메시지>>"); //console에 입력한 문자 읽어들이기
+				System.out.println("메시지>>"); // console에 입력한 문자 읽어들이기
 				sendMsg = stdIn.readLine();
-				System.out.println("#####" + sendMsg); //server로 문자 전송
+				System.out.println("#####" + sendMsg); // server로 문자 전송
 
 				pw.println(sendMsg);
-				pw.flush(); //server부터 메시지 읽기
+				pw.flush(); // server부터 메시지 읽기
 
 				String receivedMsg = br.readLine();
 				System.out.println("서버로부터 받은 메시지: " + receivedMsg);
